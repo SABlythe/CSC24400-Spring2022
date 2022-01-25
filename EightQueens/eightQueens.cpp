@@ -54,9 +54,9 @@ bool canPlace(int inRow, int inCol)
 			return false;
 	}
 	
-	// check to see if there is alread a queen on the upper left diagonal
+	// check to see if there is already a queen on the upper left diagonal
 	
-	// check to see if there is alread a queen on the lower left diagonal
+	// check to see if there is already a queen on the lower left diagonal
 	
 	// if any of the above three cases are in play, return false
 	//   otherwise return true
