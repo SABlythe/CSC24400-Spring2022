@@ -110,21 +110,4 @@ void solveBoard()
 		cout << "No answer found!!!" << endl;
 }
 
-int main(int argc, char *argv[])
-{
-  cout << "How many queens in your problem? ";
-  cin >> boardSize; 
 
-
-  initBoard();
-  
-  cout << "The empty Board:" << endl;
-  printBoard();
-  
-  solveBoard();
-  
-  cout << "The solved Board:" << endl;
-  printBoard();
-  
-  return 0;
-}
