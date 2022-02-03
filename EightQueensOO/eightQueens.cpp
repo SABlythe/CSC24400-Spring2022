@@ -7,9 +7,10 @@
 using namespace std;
 
 char board[MAXSIZE][MAXSIZE];
-int boardSize;
+//int boardSize;
 
-void initBoard()
+void 
+EightQueens::initBoard()
 {
 	for(int row=0 ; row<boardSize; row++)
 	{

@@ -8,19 +8,25 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+
+  
+  
   cout << "How many queens do you want to place? ";
-  cin >> boardSize; 
+  
+  int queenCount;
+  cin >> queenCount; 
 
+  EightQueens board(queenCount);
 
-  initBoard();
+  board.initBoard();
   
   cout << "The empty Board:" << endl;
-  printBoard();
+  board.printBoard();
   
-  solveBoard();
+  board.solveBoard();
   
   cout << "The solved Board:" << endl;
-  printBoard();
+  board.printBoard();
   
   return 0;
 }
