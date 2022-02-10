@@ -27,8 +27,6 @@ Complex::operator+(double otherNumber) // do this + otherNumber
    Complex theSum( _real + otherNumber,
                    _imaginary );
 
-   _real-=1;
-   
    return theSum;
 }
 
