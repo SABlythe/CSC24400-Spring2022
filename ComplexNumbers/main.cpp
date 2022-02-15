@@ -4,6 +4,20 @@
 
 using namespace std;
 
+
+const Complex myFunction(Complex &xValue, Complex &yValue)
+{
+  Complex answer = 3 + xValue * yValue;
+
+  return answer;
+}
+
+void printMe(Complex &cnum)
+{
+  cnum.imaginary() = 42;
+  cout << cnum << endl;
+}
+
 int main(int argc, char *argv[])
 {
 	Complex num1(1,2); // 1 + 2i
@@ -39,6 +53,11 @@ int main(int argc, char *argv[])
 	num3.imaginary() = 99;
 	cout << "The imaginary part of " << num3
 	     << " is NOW " << num3.imaginary() << endl; 
+
+	printMe(num3);
+	cout << "After printMe, num3=" << num3 << endl;
+
+	cout << myFunction(num1, num2) << endl;
 	
 	return 0;
 }
