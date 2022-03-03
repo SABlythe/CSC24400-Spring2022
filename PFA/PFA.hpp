@@ -14,6 +14,9 @@ public:
 
   void addElement(int elementToAdd);
 
+  const PFA&  operator+=(int newElement) {addElement(newElement); return *this; }   
+  const PFA&  operator+=(const PFA &otherArray);
+  
   std::ostream& print(std::ostream &toStream) const;
 
   friend std::ostream& operator<<(std::ostream &os, const PFA &pfa);
