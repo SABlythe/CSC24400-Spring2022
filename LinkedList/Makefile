@@ -19,4 +19,4 @@ LinkedList.o: LinkedList.cpp LinkedList.hpp
 	$(CC) LinkedList.cpp
 
 clean:
-	/bin/rm -rf $(OBJS) arrayFun *~
+	/bin/rm -rf $(OBJS) llist *~
