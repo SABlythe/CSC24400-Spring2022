@@ -1,5 +1,5 @@
 DBG = -g
-OPTS = $(DBG) -Wall -ansi -pedantic
+OPTS = $(DBG) -Wall -ansi -pedantic -std=c++20
 
 CC = g++ -c $(OPTS)
 LN = g++

@@ -10,10 +10,17 @@ class LinkedList
 {
 private:
   ListNode *_head;
+  ListNode *_tail;
 public:
-  LinkedList() : _head(NULL) {}
+  LinkedList() : _head(NULL), _tail(NULL) {}
 
   void addFront(const std::string &newData);
+  void append(const std::string &newData); //add at end of list
+
+  // returns poiter to the item removed ...
+  ListNode* removeFront();
+  
+  ListNode* findTail() const {return _tail;}
 
   friend std::ostream& operator<<(std::ostream &os, const LinkedList &l);
 };

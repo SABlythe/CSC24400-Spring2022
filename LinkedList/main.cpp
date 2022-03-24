@@ -31,16 +31,19 @@ int main(int argc, char *argv[])
 
   cout << names << endl;
 
-  names.addFront("Michael");
-  cout << names << endl;
-
-  names.addFront("Josh");
-  cout << names << endl;
-
-  names.addFront("James");
+  names.append("Josh");
   cout << names << endl;
 
   names.addFront("Blythe");
+  cout << names << endl;
+
+  names.addFront("Jordina");
+  cout << names << endl;
+
+  names.append("Connor");
+  cout << names << endl;
+
+  names.append("Blythe");
   cout << names << endl;
   
   return 0;
