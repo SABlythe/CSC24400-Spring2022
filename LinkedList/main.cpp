@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 
   */
 
+  /*
   LinkedList  names;
 
   cout << names << endl;
@@ -45,6 +46,50 @@ int main(int argc, char *argv[])
 
   names.append("Blythe");
   cout << names << endl;
+  */
+
+  LinkedList animals;
+
+  
+  animals.append("cat");
+  
+  animals.append("dog");
+  animals.append("shark");
+  animals.append("dolphin");
+
+  
+  if ( !animals.isEmpty() )
+    cout << animals << endl;
+  else
+    cout << "List is empty!" << endl;
+
+  ListNode *search = animals.find("shark");
+  if (search) 
+    cout << search->data() << endl;
+
+  search = animals.find("shorts");
+  if (search) 
+    cout << search->data() << endl;
+
+  search = animals.findPrev("shark");
+  if (search) 
+    cout << search->data() << endl;
+
+  search = animals.findPrev("cat");
+  if (search) 
+    cout << search->data() << endl;
+  else
+    cout << "Not found!!" << endl;
+
+  search = animals.findPrev("shorts");
+  if (search) 
+    cout << search->data() << endl;
+  else
+    cout << "Not found!!" << endl;
+
+  ListNode *loc = animals.find("shark");
+  animals.insertBefore(loc, "human");
+  cout << animals << endl; // should have "human" between "dog" and "shark"
   
   return 0;
 }

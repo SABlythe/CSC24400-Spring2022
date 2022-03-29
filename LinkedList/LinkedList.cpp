@@ -54,6 +54,18 @@ LinkedList::append(const std::string &newData) //add at end of list
   
 }
 
+
+void
+LinkedList::insertBefore(ListNode *here, const std::string &newData)
+{
+  ListNode *prev = findPrev(here->data());
+
+  ListNode *newNode = new ListNode(newData);
+
+  newNode->next() = here;
+  prev->next() = newNode;
+}
+
 ListNode*
 LinkedList::removeFront()
 {
@@ -78,6 +90,44 @@ LinkedList::removeFront()
   return valueToReturn;
 }
 
+ListNode*
+LinkedList::find(const std::string &value) const
+{
+  ListNode *curr;
+
+  curr = _head;
+  while(curr)
+    {
+      if (curr->data() == value)
+	return curr;
+      else
+	curr=curr->next();
+    }
+  return NULL;  
+}
+
+ListNode*
+LinkedList::findPrev(const std::string &value) const
+{
+  if (!find(value))
+    {
+      cerr << "Warning: " << value << " not found in list !!!" << endl;
+      return NULL;
+    }
+
+  
+  ListNode *curr;
+
+  curr = _head;
+  while(curr->next())
+    {
+      if (curr->next()->data() == value)
+	return curr;
+      else
+	curr=curr->next();
+    }
+  return NULL;  
+}
 
 
 ostream& operator<<(ostream &os, const LinkedList &myList)
