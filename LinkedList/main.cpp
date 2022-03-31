@@ -87,9 +87,14 @@ int main(int argc, char *argv[])
   else
     cout << "Not found!!" << endl;
 
-  ListNode *loc = animals.find("shark");
-  animals.insertBefore(loc, "human");
+  ListNode *loc = animals.find("phoenix");
+  //animals.insertBefore(loc, "human");
+  //animals.insertAfter(loc, "human");
+  animals.remove(loc);
   cout << animals << endl; // should have "human" between "dog" and "shark"
+
+  animals.append("lobster");
+  cout << animals << endl;
   
   return 0;
 }

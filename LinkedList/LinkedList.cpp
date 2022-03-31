@@ -58,6 +58,21 @@ LinkedList::append(const std::string &newData) //add at end of list
 void
 LinkedList::insertBefore(ListNode *here, const std::string &newData)
 {
+  // is requested position valid? if not ... 
+  if (here==NULL)
+    {
+      cout << "Invalid position specified for location in insertBefore()"
+	   << endl;
+      return;
+    }
+
+  // are you inserting before head ?
+  if (here == _head)
+    {
+      addFront(newData);
+      return;
+    }
+  
   ListNode *prev = findPrev(here->data());
 
   ListNode *newNode = new ListNode(newData);
@@ -65,6 +80,28 @@ LinkedList::insertBefore(ListNode *here, const std::string &newData)
   newNode->next() = here;
   prev->next() = newNode;
 }
+
+void
+LinkedList::insertAfter(ListNode *here, const std::string &newData)
+{
+  // is requested position valid? if not ... 
+  if (here==NULL)
+    {
+      cout << "Invalid position specified for location in insertAfter()"
+	   << endl;
+      return;
+    }
+  
+  ListNode* newNode = new ListNode(newData);
+  newNode->next() = here->next();
+  here->next() = newNode;
+
+  if (_tail->next() != NULL)
+    _tail = newNode;
+}
+
+
+
 
 ListNode*
 LinkedList::removeFront()
@@ -89,6 +126,36 @@ LinkedList::removeFront()
   valueToReturn->next() = NULL;
   return valueToReturn;
 }
+
+ListNode*
+LinkedList::remove(ListNode *toRemove)
+{
+  if (toRemove==NULL)
+    {
+      //cout << "Attempt to remove a non-existent node!" << endl; 
+      return NULL;
+    }
+  
+  if (toRemove == _head)
+    {
+      return removeFront();
+    }
+
+
+  
+  ListNode *prev = findPrev(toRemove->data());
+  prev->next() = toRemove->next();
+
+  if (toRemove==_tail)
+    {
+      _tail = prev;
+    }
+  toRemove->next() = NULL; // clean up node we are removing
+  return toRemove;
+}
+
+
+
 
 ListNode*
 LinkedList::find(const std::string &value) const
