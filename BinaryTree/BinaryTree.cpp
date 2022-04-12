@@ -5,7 +5,21 @@ using namespace std;
 TreeNode*
 BinaryTree::find(const std::string &newVal) const
 {
-  return NULL; // fix me LATER !!!!
+  TreeNode *curr = _root;
+
+  while (  curr  &&  *(curr->data())  !=  newVal )
+    {
+      if ( *(curr->data())  >  newVal )
+	{
+	  curr=curr->left();
+	}
+      else if ( *(curr->data())  <  newVal )
+	{
+	  curr=curr->right();
+	}
+    }
+  
+  return curr; // fix me LATER !!!!
 }
 
 // returns new tree with new node inserted
@@ -46,7 +60,7 @@ void
 BinaryTree::insert(const std::string &newVal)
 {
   TreeNode *nodeToInsert = new TreeNode(newVal); 
-  _root = recursiveInsert( _root, nodeToInsert )
+  _root = recursiveInsert( _root, nodeToInsert );
 }
 
 TreeNode*
@@ -55,7 +69,23 @@ BinaryTree::remove(const std::string &newVal) // preview
   return NULL; // fix me LATER !!!!
 }
 
+void infixPrint(TreeNode *subTree, ostream &toStream)
+{
+  if (!subTree)
+    return;
+  
+  infixPrint(subTree->right() , toStream);
+
+  for (int nspaces=0; nspaces < subTree->depth(); nspaces++)
+    toStream << "    ";
+  
+  toStream << *(subTree->data()) << endl;
+
+  infixPrint(subTree->left() , toStream);
+}
+
 std::ostream& operator<<(std::ostream &os, const BinaryTree &bt)
 {
-  return os; // fix me LATER!!!!
+  infixPrint(bt._root, os);
+  return os;
 }
