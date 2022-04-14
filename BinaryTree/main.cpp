@@ -15,13 +15,17 @@ int main(int argc, char *argv[])
 
   cout << myTree << endl;
 
-  cout << "What value should I look for ?";
+  cout << "What value should I delete ?";
   string valToFind;
   cin >> valToFind;
   TreeNode *foundAt = myTree.find(valToFind);
 
   if (foundAt != NULL)
-    cout << "Here it is:" << *foundAt << endl;
+    {    
+      myTree.remove(valToFind);
+      cout << "and here is the updated tree!" << endl
+	   << myTree << endl;
+    }
   else
     cout << "Not found in tree!" << endl;
   

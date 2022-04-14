@@ -64,9 +64,98 @@ BinaryTree::insert(const std::string &newVal)
 }
 
 TreeNode*
-BinaryTree::remove(const std::string &newVal) // preview
+BinaryTree::remove(const std::string &val) // preview
 {
-  return NULL; // fix me LATER !!!!
+  TreeNode *toDel = find(val);
+
+  // val is not in tree
+  if (!toDel)
+    {
+      return NULL;
+    }
+
+  // case 1: toDel is a leaf
+  if (toDel->isLeaf())
+    {
+      if (toDel==_root)
+        _root=NULL;
+      
+      TreeNode *parent = toDel->parent();
+      if (parent->left() == toDel)
+        parent->left()=NULL;
+      else
+        parent->right()=NULL;
+
+      toDel->parent()=toDel->left()=toDel->right() = NULL;
+      return toDel;
+    }
+
+  // case 2: toDel has 1 child
+  else if (  (toDel->left()   &&  !toDel->right())  ||
+             (toDel->left()==NULL   &&  toDel->right()!=NULL)
+          )
+    {
+      if (toDel==_root)
+        {
+          if (toDel->left())
+            _root=toDel->left();
+          else
+            _root=toDel->right();
+          _root->parent() = NULL;
+        }
+           else
+        {
+          // find the subtree to "move up"
+          TreeNode *subTreeToMove;
+          if (toDel->left())
+            subTreeToMove = toDel->left();
+          else
+            subTreeToMove = toDel->right();
+
+          // find toDel's parent and attach the subtree we just found to it
+          TreeNode *parent = toDel->parent();
+          if (parent->left() == toDel)
+            parent->left() = subTreeToMove;
+          else
+            parent->right() = subTreeToMove;
+
+          // make subtree's parent toDel's parent .
+          subTreeToMove->parent() = parent; 
+        }
+
+      toDel->parent()=toDel->left()=toDel->right() = NULL;
+      return toDel;
+    }
+  // case 3: toDel has 2 children
+  else // must have two children
+    {
+      // find the largest node in the left subtree.
+      //   note: alternative: find the smallest node in the right subtree:
+      TreeNode *largestInLeft=toDel->left();
+
+      // as long as we can keep moving right (in the left subtree) ...
+      while( largestInLeft->right() )
+        {
+          // ... keep moving right
+          largestInLeft=largestInLeft->right();
+        }
+
+      // "recursively" remove the largest value in left subtree.
+      //   reality: this node is a leaf or has only one child!
+      //             so, only one more "recursive" call is made!
+      remove( *(largestInLeft->data()) );
+
+      // update the node we are trying to delete's data
+      toDel->data() = largestInLeft->data();
+
+      // cleanup the node we removed so it does not refere back to tree. 
+      largestInLeft->parent()=largestInLeft->left()=largestInLeft->right() = NULL;
+      return largestInLeft;
+    }
+
+  // should never be reached, but the compiler can't tell that.
+  //   So, we have to return something. 
+  return NULL;
 }
 
 void infixPrint(TreeNode *subTree, ostream &toStream)
