@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
   if (foundAt != NULL)
     {    
       myTree.remove(valToFind);
-      cout << "and here is the updated tree!" << endl
+       cout << "and here is the updated tree!" << endl
 	   << myTree << endl;
     }
   else

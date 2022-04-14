@@ -77,6 +77,7 @@ BinaryTree::remove(const std::string &val) // preview
   // case 1: toDel is a leaf
   if (toDel->isLeaf())
     {
+      // Think ***HARD*** ... there's a small bug here!
       if (toDel==_root)
         _root=NULL;
       
@@ -103,7 +104,7 @@ BinaryTree::remove(const std::string &val) // preview
             _root=toDel->right();
           _root->parent() = NULL;
         }
-           else
+      else
         {
           // find the subtree to "move up"
           TreeNode *subTreeToMove;
